@@ -1,0 +1,66 @@
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>Flow Manager</title>
+      <meta charset="utf-8">
+      <meta name="description" content="Flow Manager: PM Tool" />
+      <meta name="author" content="Halfdan Hem">
+      <meta name="keywords" content="Your keywords" />
+      <!-- Optimized mobile viewport -->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/>
+      <!-- CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+      <!-- HTML5 IE Enabling Script -->
+            <!--[if lt IE 9]><script src="libs/html5shiv.min.js"></script>
+            <![endif]-->
+          </head>
+          <body>
+            <nav class="navbar navbar-inverse" role="navigation">
+              <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" 
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand" href=<%=root_path %>>FlOw</a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse">
+                  <ul class="nav navbar-nav">
+                    <li>
+                      <a href="#">Projects</a>
+                    </li>
+                    <li>
+                      <a href="#">Services</a>
+                    </li>
+                    <li>
+                      <%= link_to "About", about_path %>
+                    </li>
+                  </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+              </div>
+              <!-- /.container -->
+            </nav>
+            <!--Centralize the grid-->
+            <div class="container">
+            <%= yield %>
+            </div>
+            <!-- JavaScript at the bottom for fast page loading -->
+            <script>
+                //IE outdate friendly warning if you don't want remove it
+                var  = {vs:{i:8,f:3.6,o:10.6,s:3.2,n:9}}
+                .ol = window.onload; 
+                window.onload=function(){ 
+                 try {if (.ol) .ol();}catch (e) {} 
+                 var e = document.createElement("script"); 
+                 e.setAttribute("type", "text/javascript"); 
+                 e.setAttribute("src", "http://browser-update.org/update.js"); 
+                 document.body.appendChild(e); 
+               } 
+             </script>
+           </body>
+           </html>
