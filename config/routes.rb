@@ -2,7 +2,18 @@ Rails.application.routes.draw do
   root 'home#index'
 
   get '/about' => 'home#about'
-  # The priority is based upon order of creation: first created -> highest priority.
+  get '/projects/search' => 'projects#search'
+
+  # Projects Paths
+  resources :projects, :tasks
+  # get '/projects' => 'projects#index'
+  # get '/projects/new' => 'projects#new', as: :new_project
+  # post '/projects' => 'projects#create'
+  # get '/projects/:id' => 'projects#show', as: :project
+  # get '/projects/:id/edit' => 'projects#edit', as: :edit_project
+  # patch '/projects/:id' => 'projects#update'
+  # delete '/projects/:id' => 'projects#destroy', as: :delete_project
+    # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
