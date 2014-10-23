@@ -1,11 +1,22 @@
 Rails.application.routes.draw do
-  root 'home#index'
+  root 'projects#index'
 
   get '/about' => 'home#about'
-  get '/projects/search' => 'projects#search'
 
   # Projects Paths
-  resources :projects, :tasks
+  resources :projects do
+    resources :tasks, only: [:create, :destroy]
+    resources :discussions do
+      resources :comments
+    end
+  end
+
+  # map.resources :discussion do |discussion|
+  #   accounts.resources :comment, :name_prefix => "discussion_"
+  # end
+
+  resources :tasks, only: [:index, :show
+  ]
   # get '/projects' => 'projects#index'
   # get '/projects/new' => 'projects#new', as: :new_project
   # post '/projects' => 'projects#create'

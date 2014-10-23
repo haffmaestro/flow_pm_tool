@@ -11,11 +11,13 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new task_params
+    @project  = Project.find params[:project_id]
+    @task     = Task.new task_params
+    @task.project = @project
     if @task.save
-      redirect_to @task, notice: notice_creator('created')
+      redirect_to :back, notice: notice_creator('created')
     else
-      render :new
+      render "project/show"
     end
 
   end
@@ -39,8 +41,9 @@ class TasksController < ApplicationController
   end
 
   def destroy
+    @project = Project.find (@task.project_id)
     if @task.destroy
-      redirect_to tasks_path, notice: notice_creator('deleted')
+      redirect_to @project, notice: notice_creator('deleted')
     else
       flash.now[:alert] = notice_creator('delete', false)
       render :show

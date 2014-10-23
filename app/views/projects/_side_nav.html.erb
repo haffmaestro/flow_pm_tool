@@ -1,0 +1,10 @@
+<div class="col-md-6 col-sm-6">
+  <h2>Current Projects</h2>
+  <h3><%= @search_param %></h3>
+  <hr>
+  <% @projects.each do |project| %>
+  <h3><%= link_to project.title, project %></h3>
+  <p><%= project.description %></p>
+  <hr>
+  <%end %>
+</div>

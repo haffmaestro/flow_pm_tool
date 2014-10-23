@@ -1,9 +1,11 @@
 class ProjectsController < ApplicationController
-
+  before_action :find_projects, only: [:index, :show]
   before_action :find_project, only: [:show, :edit, :update, :destroy]
-
+  before_action :notify_paginate, only: [:index, :show]
+  
   def index
-    @projects = Project.all.paginate(page: params[:page], per_page: 10)
+    @search_term = params[:search]
+    @projects = @projects.search(@search_term) if params[:search]
   end
 
   def new
@@ -17,16 +19,14 @@ class ProjectsController < ApplicationController
     else
       render :new
     end
-
   end
 
   def show
     @tasks = @project.tasks
+    @task = Task.new
   end
 
-
-  def edit
-  end
+  def edit() end
 
   def update
     if @project.update project_params
@@ -54,6 +54,14 @@ class ProjectsController < ApplicationController
   end
 
   private
+
+  def notify_paginate
+    @render_paginate = true
+  end
+
+  def find_projects
+    @projects = Project.all.paginate(page: params[:page], per_page: 10)
+  end
 
   def project_params
     params.require(:project).permit(:title, :description, :due_date)

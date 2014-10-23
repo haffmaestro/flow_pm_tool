@@ -2,7 +2,10 @@
 <%= form_for @project, html: {role:"form"} do |f| %>
 <div class="form-group">
   <label> Title</label>
+  <div class="input-group">
   <%= f.text_field :title, class: "form-control" %>
+  <div class="input-group-addon">.james</div>
+  </div>
 </div>
 <div class="form-group">
   <label for=":description">Description</label>
@@ -13,6 +16,6 @@
   <%= f.date_field :due_date, class: "form-control"%>
 </div>
 <div class="form-group">
-  <%= f.submit "#{@project.persisted? ? "Update" : "Create"}", class: "form-control"%>
+  <%= f.submit "#{@project.persisted? ? "Update" : "Create"}", class: "btn btn-default"%>
 </div>
 <% end %>

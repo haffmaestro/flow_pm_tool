@@ -1,0 +1,13 @@
+<%= form_for [@project, @discussion] do |f| %>
+<label for=""><%="#{@discussion.persisted? ? "Update" : "Create"}" %> Discussion</label>
+<div class="form-group">
+  <%= f.text_field :title, class: "form-control"%>
+</div>
+<label for="">Description</label>
+<div class="form-group">
+  <%= f.text_area :description, size: "60x6", class: "form-control"%>
+</div>
+<div class="form-group">
+  <%= f.submit "#{@discussion.persisted? ? "Update" : "Create"}", class: "form-control"%>
+</div>
+<% end %>
