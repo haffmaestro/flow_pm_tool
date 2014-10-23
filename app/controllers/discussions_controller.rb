@@ -1,4 +1,5 @@
 class DiscussionsController < ApplicationController
+    before_action :find_discussion, only: [:update, :show, :destroy]
     def index
       @project = Project.find (params[:project_id])
       @discussions = @project.discussions
@@ -22,7 +23,6 @@ class DiscussionsController < ApplicationController
     end
 
     def show
-      @discussion = Discussion.find params[:id]
       @project = Project.find params[:project_id]
       @discussions = @project.discussions
     end
@@ -31,6 +31,11 @@ class DiscussionsController < ApplicationController
     end
 
     def update
+      if @discussion.update discussion_params
+        redirect_to :back, notice: notice_creator('updated')
+      else
+        redirect_to :back, notice: notice_creator('update', false)
+      end
     end
 
     def destroy
@@ -44,5 +49,9 @@ class DiscussionsController < ApplicationController
 
     def notice_creator(action, success=true)
       "#{@discussion.title} "+action+(success ? " successfully." : "failure.")
+    end
+
+    def find_discussion
+      @discussion = Discussion.find params[:id]
     end
 end

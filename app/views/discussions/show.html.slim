@@ -1,0 +1,15 @@
+=render partial: 'current_discussions'
+
+.col-md-6.col-sm6
+  h2
+    Comments in 
+    =@discussion.title
+  .well
+    - @discussion.comments.all.each do |comment|
+      p=comment.body
+      h6
+        Posted at: 
+        =comment.updated_at
+      hr
+
+
