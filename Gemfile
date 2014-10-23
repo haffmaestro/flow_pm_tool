@@ -31,6 +31,7 @@ gem 'font-awesome-rails'
 
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
+gem "animate-rails"
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 
@@ -42,6 +43,10 @@ group :development do
   gem "hirb"
   gem "awesome_print"
   gem 'spring'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'quiet_assets'
+  gem 'pry-rails'
 end
 
 # Use ActiveModel has_secure_password

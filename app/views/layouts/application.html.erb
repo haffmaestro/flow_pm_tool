@@ -1,30 +1,24 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Flow Manager</title>
-  <meta charset="utf-8">
-  <meta name="description" content="Flow Manager: PM Tool" />
-  <meta name="author" content="Halfdan Hem">
-  <meta name="keywords" content="Your keywords" />
-  <!-- Optimized mobile viewport -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/>
-  <!-- CSS -->
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track'=>true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-  <!-- HTML5 IE Enabling Script -->
-    <!--[if lt IE 9]><script src="libs/html5shiv.min.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-    <nav class="navbar navbar-inverse" role="navigation">
-      <%= render "/layouts/nav" %>
-    </nav>
-    <!--Centralize the grid-->
-    <div class="container">
-      <div class="row">
-        <div class="col-md-2 col-sm-0"></div>
-        <div class="col-md-8 col-sm-12">
+doctype html
+html
+  head
+    title Flow Manager
+    meta charset="utf-8"
+    meta charset="utf-8"
+    meta name="description" content="Flow Manager: PM Tool"
+    meta name="author" content="Halfdan Hem"
+    meta name="keywords" content="Your keywords"
+
+  =stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track'=>true
+  =javascript_include_tag 'application', 'data-turbolinks-track' => true
+  =csrf_meta_tags
+  /HTML5 IE Enabling Script
+  body
+    nav class="navbar navbar-inverse" role="navigation"
+      =render "/layouts/nav"
+    .container
+      .row
+        .col-md-8.col-md-offset-2.col-sm-12
           <% if flash[:notice] %>
           <p class="alert alert-success"><%= flash[:notice] %></p>
           <% elsif flash[:alert] %>

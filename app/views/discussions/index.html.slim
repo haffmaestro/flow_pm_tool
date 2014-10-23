@@ -1,0 +1,13 @@
+=render partial: 'projects/project_info'
+
+.col-md-6.col-sm-6.animated.bounceIn
+  h2 Discussions
+  =render partial: 'form'
+  h2 Current Discussions
+  .well
+    - @discussions.each do |discussion|
+      p=link_to discussion.title, project_discussion_path(@project.id, discussion.id)
+      - if discussion.description
+        h6= discussion.description
+      hr
+

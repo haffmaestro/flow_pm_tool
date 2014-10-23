@@ -1,10 +1,9 @@
 = form_for [@project, @discussion] do |f|
-  %label{:for => ""}
+  label
     = "#{@discussion.persisted? ? "Update" : "Create"}"
-    Discussion
   .form-group
     = f.text_field :title, class: "form-control"
-  %label{:for => ""} Description
+  label Description
   .form-group
     = f.text_area :description, size: "60x6", class: "form-control"
   .form-group

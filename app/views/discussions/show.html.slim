@@ -1,8 +1,9 @@
 =render partial: 'current_discussions'
 
-.col-md-6.col-sm6
+.col-md-6.col-sm6.animated.bounceIn
   h2
-    Comments in 
+    Comments in
+    |  
     =@discussion.title
   .well
     - @discussion.comments.all.each do |comment|

@@ -44,7 +44,7 @@ class DiscussionsController < ApplicationController
     private
 
     def discussion_params
-      params.require(:discussion).permit(:title)
+      params.require(:discussion).permit(:title, :description)
     end
 
     def notice_creator(action, success=true)
