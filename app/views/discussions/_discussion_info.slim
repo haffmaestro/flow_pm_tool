@@ -1,0 +1,20 @@
+h2
+  |Comments in
+  |  
+  =@discussion.title
+.well
+  - @discussion.comments.all.each do |comment|
+    p
+      =comment.body
+      |  
+      = link_to fa_icon('trash'), project_discussion_comment_path(@project.id, @discussion.id, comment.id), method: "delete"
+    h6
+      Posted at: 
+      =comment.updated_at
+    hr
+
+= form_for [@project, @discussion, @comment] do |f|
+  .form-group
+    = f.text_area :body, size: "60x6", class: "form-control"
+  .form-group
+    = f.submit 'Comment', class: "form-control"

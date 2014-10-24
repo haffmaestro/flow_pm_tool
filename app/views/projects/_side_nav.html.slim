@@ -1,8 +1,7 @@
-.col-md-6.col-sm-6
-  h2 Current Projects
-  h3=@search_param
+h2 Current Projects
+h3=@search_param
+hr
+- @projects.each do |project|
+  h3=link_to project.title, project
+  p=project.description
   hr
-  - @projects.each do |project|
-    h3=link_to project.title, project
-    p=project.description
-    hr

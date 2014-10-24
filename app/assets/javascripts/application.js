@@ -15,3 +15,8 @@
 //= require turbolinks
 //= require_tree .
 //= require bootstrap
+
+
+var removeFadeInRight = function() {
+  $('.fadeInRight').removeClass("fadeInRight");
+};

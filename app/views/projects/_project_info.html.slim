@@ -1,0 +1,36 @@
+h2=@project.title
+h6
+  |Due Date: 
+  |  
+  =@project.due_date
+p= @project.description
+p= @project.category.name
+.btn-group
+  = link_to "Edit", edit_project_path(@project), class:"btn btn-default"
+  = link_to "Delete", project_path(@project), method: :delete, class:"btn btn-default"
+  = link_to "Discussions", project_discussions_path(@project), class:"btn btn-default", onclick: "removeFadeInRight();"
+
+= form_for [@project, @task] do |f|
+  br
+  br
+  label New Task
+  .form-group
+    =f.text_field :title, class: "form-control"
+  .form-group
+    =f.label :due_date
+    = f.date_field :due_date, class: "form-control"
+  .form-group
+    = f.submit "#{@task.persisted? ? "Update" : "Create"}", class: "form-control"
+
+  h3 Project Tasks
+  ul.list-group
+    - @project.tasks.each do |task|
+      .well
+        p
+          = link_to fa_icon('trash'), project_task_path(@project.id, task.id), method: "delete"
+          |  
+          = link_to task.title, task
+        h6 
+          |Due at:
+          |  
+          =task.due_date

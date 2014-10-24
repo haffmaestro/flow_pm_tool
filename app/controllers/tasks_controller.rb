@@ -43,10 +43,10 @@ class TasksController < ApplicationController
   def destroy
     @project = Project.find (@task.project_id)
     if @task.destroy
-      redirect_to @project, notice: notice_creator('deleted')
+      redirect_to :back, notice: notice_creator('deleted')
     else
       flash.now[:alert] = notice_creator('delete', false)
-      render :show
+      redirect_to :back
     end
   end
 

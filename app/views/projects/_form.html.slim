@@ -1,0 +1,19 @@
+
+= form_for @project, html: {role:"form"} do |f|
+  .form-group
+    =f.label :title
+    .input-group
+      =f.text_field :title, class: "form-control"
+      .input-group-addon Project Name
+  .form-group
+    =f.label :description
+    =f.text_area :description, size: "60x12", class: "form-control"
+  .form-group
+    =f.label :category_id
+    =f.collection_select :category_id, Category.order(:name), :id, :name, {}, class: "form-control"
+    / =f.select :category_id, options_for_select(Category.all.order(:name).map {|c| [c.name, c.id]}, @project.category_id), {}, {class: "form-control"}
+  .form-group
+    =f.label :due_date
+    =f.date_field :due_date, class: "form-control"
+  .form-group
+    =f.submit "#{@project.persisted? ? "Update" : "Create"}", class: "btn btn-default"

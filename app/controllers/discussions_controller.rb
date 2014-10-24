@@ -25,6 +25,7 @@ class DiscussionsController < ApplicationController
     def show
       @project = Project.find params[:project_id]
       @discussions = @project.discussions
+      @comment = Comment.new
     end
 
     def edit
@@ -39,6 +40,12 @@ class DiscussionsController < ApplicationController
     end
 
     def destroy
+      @discussion = Discussion.find params[:id]
+      if @discussion.destroy
+        redirect_to :back
+      else
+        redirect_to :back, notice: "Can't delete that one bub"
+      end
     end
 
     private

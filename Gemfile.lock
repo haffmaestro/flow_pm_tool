@@ -27,8 +27,6 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
-    animate-rails (1.0.7)
-      rails
     arel (5.0.1.20140414130214)
     awesome_print (1.2.0)
     better_errors (2.0.0)
@@ -40,6 +38,7 @@ GEM
     bootstrap-sass (3.2.0.2)
       sass (~> 3.2)
     builder (3.2.2)
+    choice (0.1.6)
     coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -96,6 +95,11 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.1.6)
       sprockets-rails (~> 2.0)
+    rails-erd (1.1.0)
+      activerecord (>= 3.0)
+      activesupport (>= 3.0)
+      choice (~> 0.1.6)
+      ruby-graphviz (~> 1.0.4)
     rails_12factor (0.0.3)
       rails_serve_static_assets
       rails_stdout_logging
@@ -109,6 +113,7 @@ GEM
     rake (10.3.2)
     rdoc (4.1.2)
       json (~> 1.4)
+    ruby-graphviz (1.0.9)
     sass (3.2.19)
     sass-rails (4.0.3)
       railties (>= 4.0.0, < 5.0)
@@ -121,6 +126,11 @@ GEM
     slim (2.1.0)
       temple (~> 0.6.9)
       tilt (>= 1.3.3, < 2.1)
+    slim-rails (2.1.5)
+      actionpack (>= 3.0, < 4.2)
+      activesupport (>= 3.0, < 4.2)
+      railties (>= 3.0, < 4.2)
+      slim (~> 2.0)
     slop (3.6.0)
     spoon (0.0.4)
       ffi
@@ -153,7 +163,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  animate-rails
   awesome_print
   better_errors
   binding_of_caller
@@ -169,10 +178,12 @@ DEPENDENCIES
   pry-rails
   quiet_assets
   rails (= 4.1.6)
+  rails-erd
   rails_12factor
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   slim
+  slim-rails
   spring
   turbolinks
   uglifier (>= 1.3.0)
