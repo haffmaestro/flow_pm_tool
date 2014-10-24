@@ -1,8 +1,9 @@
 class ProjectsController < ApplicationController
+  before_action :authenticate_user!
   before_action :find_projects, only: [:index, :show]
   before_action :find_project, only: [:show, :edit, :update, :destroy]
   before_action :notify_paginate, only: [:index, :show]
-  
+
   def index
     @search_term = params[:search]
     @projects = @projects.search(@search_term) if params[:search]

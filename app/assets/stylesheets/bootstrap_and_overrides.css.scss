@@ -1,10 +1,21 @@
 @import "custom.css.scss";
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
 
 
 .dropdown {
   padding-top: 7px;
 }
+
+#sign-in-status {
+  margin-top: 1%;
+}
+
+.well {
+  padding-bottom: 0px;
+}
+
+
 
 
