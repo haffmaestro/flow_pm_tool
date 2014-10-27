@@ -4,6 +4,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_many :projects, dependent: :nullify
+  has_many :comments, dependent: :nullify
+
   def get_user_name
     if user_name
       "#{user_name}".strip
@@ -11,5 +14,4 @@ class User < ActiveRecord::Base
       email
     end
   end
-  
 end

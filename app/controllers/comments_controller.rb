@@ -3,6 +3,7 @@ class CommentsController < ApplicationController
     @comment = Comment.new comment_params
     @discussion = Discussion.find params[:discussion_id]
     @comment.discussion = @discussion
+    @comment.user = current_user
     if @comment.save
       redirect_to :back
     else

@@ -3,6 +3,9 @@ h6
   |Due Date: 
   |  
   =@project.due_date
+h6
+  |by  
+  =project_user_display(@project)
 p= @project.description
 p= @project.category.name
 .btn-group

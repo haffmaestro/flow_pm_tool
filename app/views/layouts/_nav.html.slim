@@ -4,19 +4,10 @@
       / <a class="navbar-brand" href=<%=root_path %>> <%=fa_icon('magic') %> FlOw</a>
     .collapse.navbar-collapse
       ul.nav.navbar-nav
-        li
+        li class=("#{'active' if request.path == '/projects'} nav-link") 
           = link_to "Projects", projects_path
         li
           = link_to "About", about_path
-        li
-          .dropdown
-            button.btn.btn-default.dropdown-toggle type="button" id="dropdownMenu1" data-toggle="dropdown"
-              |MORE NAV
-              span.caret
-            ul.dropdown-menu role="menu" aria-labelledby="dropdownMenu1"
-              li role="presentation"><%= link_to "About", about_path %></li>
-              li role="presentation" class="divider"></li>
-              li role="presentation"><%= link_to "About", about_path %></li>
       .pull-right#sign-in-status
         - if user_signed_in?
           = link_to current_user.email, edit_user_registration_path
