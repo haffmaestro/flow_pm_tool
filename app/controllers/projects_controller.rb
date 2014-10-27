@@ -1,8 +1,10 @@
 class ProjectsController < ApplicationController
+  before_action :authenticate_user!
   before_action :find_projects, only: [:index, :show]
   before_action :find_project, only: [:show, :edit, :update, :destroy]
   before_action :notify_paginate, only: [:index, :show]
-  
+  before_action :check_permissions, only: [:edit, :create, :destroy]
+
   def index
     @search_term = params[:search]
     @projects = @projects.search(@search_term) if params[:search]
@@ -14,6 +16,7 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new project_params
+    @project.user = current_user
     if @project.save
       redirect_to @project, notice: notice_creator('created')
     else
@@ -73,5 +76,9 @@ class ProjectsController < ApplicationController
 
   def notice_creator(action, success=true)
     "#{@project.title} "+action+(success ? " successfully." : "failure.")
+  end
+
+  def check_permissions
+    redirect_to root_path, alert: "You've overstepped some boundaries!" unless @project.user == current_user
   end
 end

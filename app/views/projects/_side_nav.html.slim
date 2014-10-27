@@ -3,5 +3,8 @@ h3=@search_param
 hr
 - @projects.each do |project|
   h3=link_to project.title, project
+  h6
+    |by  
+    =project_user_display(project)
   p=project.description
   hr

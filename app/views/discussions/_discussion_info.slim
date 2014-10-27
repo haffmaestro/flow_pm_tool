@@ -4,6 +4,9 @@ h2
   =@discussion.title
 .well
   - @discussion.comments.all.each do |comment|
+    h6
+      |by  
+      =comment_user_display(comment)
     p
       =comment.body
       |  

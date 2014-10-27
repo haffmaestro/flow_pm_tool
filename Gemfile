@@ -33,7 +33,7 @@ gem 'font-awesome-rails'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-
+gem 'devise'
 # Needed
 gem 'rails_12factor', group: :production
 
@@ -48,6 +48,7 @@ group :development do
   gem 'pry-rails'
   gem 'rails-erd'
 end
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

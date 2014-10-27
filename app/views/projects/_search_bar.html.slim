@@ -1,9 +1,9 @@
 .row
   .col-md-6.col-sm-6
     .row
-      .col-md-4
+      .col-md-3
         = link_to "New Project", new_project_path, class: "btn btn-default"
-      .col-md-6.col-md-offset-2
-        = form_tag(projects_path, method: "get", class: "form-group form-inline") do
-          = text_field_tag("search", params[:search], class: "form-control")
-          = submit_tag(value='Search', class: "btn btn-default")
+      .col-md-7.col-md-offset-2.form-inline
+        = form_tag(projects_path, method: "get") do
+        = text_field_tag("search", params[:search], class: "form-control")
+        = submit_tag(value='Search', class: "btn btn-default")
