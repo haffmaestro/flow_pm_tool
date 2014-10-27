@@ -7,17 +7,16 @@ Rails.application.routes.draw do
   # Projects Paths
   resources :projects do
     resources :tasks, only: [:create, :destroy]
-    resources :discussions do
-      resources :comments
-    end
+    resources :discussions, only: [:index, :create]
+  end
+
+  resources :discussions, only: [:edit, :show, :destroy] do
+    resources :comments
   end
 
   # map.resources :discussion do |discussion|
   #   accounts.resources :comment, :name_prefix => "discussion_"
   # end
-
-  resources :tasks, only: [:index, :show
-  ]
   # get '/projects' => 'projects#index'
   # get '/projects/new' => 'projects#new', as: :new_project
   # post '/projects' => 'projects#create'

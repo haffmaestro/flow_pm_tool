@@ -1,7 +1,9 @@
 class DiscussionsController < ApplicationController
-    before_action :find_discussion, only: [:update, :show, :destroy]
+    before_action :find_discussion, only: [:update, :show, :destroy,:create]
+    before_action :find_project, only: [:create]
+    before_action :find_discussions, only: [:create, :show ]
     def index
-      @project = Project.find (params[:project_id])
+      @project = Project.find params[:project_id]
       @discussions = @project.discussions
       @task = Task.new
       @comment = Comment.new
@@ -12,7 +14,6 @@ class DiscussionsController < ApplicationController
     end
 
     def create
-      @project = Project.find params[:project_id]
       @discussion = Discussion.new discussion_params
       @discussion.project = @project
       if @discussion.save
@@ -23,8 +24,6 @@ class DiscussionsController < ApplicationController
     end
 
     def show
-      @project = Project.find params[:project_id]
-      @discussions = @project.discussions
       @comment = Comment.new
     end
 
@@ -40,7 +39,6 @@ class DiscussionsController < ApplicationController
     end
 
     def destroy
-      @discussion = Discussion.find params[:id]
       if @discussion.destroy
         redirect_to :back
       else
@@ -60,5 +58,11 @@ class DiscussionsController < ApplicationController
 
     def find_discussion
       @discussion = Discussion.find params[:id]
+    end
+    def find_project
+      @project = @discussion.project
+    end
+    def find_discussions
+      @discussions = @discussion.project.discussions
     end
 end

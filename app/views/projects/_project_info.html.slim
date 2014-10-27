@@ -32,7 +32,7 @@ p= @project.category.name
         p
           = link_to fa_icon('trash'), project_task_path(@project.id, task.id), method: "delete"
           |  
-          = link_to task.title, task
+          = task.title
         h6 
           |Due at:
           |  

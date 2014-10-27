@@ -10,13 +10,13 @@ h2
     p
       =comment.body
       |  
-      = link_to fa_icon('trash'), project_discussion_comment_path(@project.id, @discussion.id, comment.id), method: "delete"
+      = link_to fa_icon('trash'), discussion_comment_path(@discussion.id, comment.id), method: "delete"
     h6
       Posted at: 
       =comment.updated_at
     hr
 
-= form_for [@project, @discussion, @comment] do |f|
+= form_for  [@discussion, @comment] do |f|
   .form-group
     = f.text_area :body, size: "60x6", class: "form-control"
   .form-group
