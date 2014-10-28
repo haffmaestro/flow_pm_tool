@@ -1,23 +1,25 @@
-h2
-  |Comments in
-  |  
-  =@discussion.title
-.well[ng-app='flow']
-  - @discussion.comments.all.each do |comment|
-    h6
-      |by  
-      =comment_user_display(comment)
-    p
-      =comment.body
-      |  
-      = link_to fa_icon('trash'), discussion_comment_path(@discussion.id, comment.id), method: "delete"
-    h6
-      Posted at: 
-      =comment.updated_at
-    hr
 
-= form_for  [@discussion, @comment] do |f|
-  .form-group
-    = f.text_area :body, size: "60x6", class: "form-control"
-  .form-group
-    = f.submit 'Comment', class: "form-control"
+#discussion[data-discussion-id=@discussion.id]
+  h2
+    |Comments in
+    |  
+    =@discussion.title
+  .well[ng-controller="CommentsController as controller"]
+    blockquote[ng-repeat="comment in controller.comments"]
+      cite
+        |by {{comment.user}} at {{comment.created_at | date}}
+      p
+        |{{comment.body}}
+    form[ng-controller="ReviewController as reviewCtrl" name="reviewForm"]
+      blockquote
+        cite
+          |by 
+          =current_user.user_name
+          |  at 
+          |{{controller.today | date}}
+        p
+          |{{comment.body}}
+      .form-group
+        textarea[name="comment[body]" size="60x3" class="form-control" ng-model="comment.body"]
+      .form-group
+        button[type="submit" class="btn btn-default" value="Submit"]

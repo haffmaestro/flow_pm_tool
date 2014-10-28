@@ -10,13 +10,16 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require bootstrap
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
-//= require_tree .
-//= require bootstrap
 //= require angular
+//= require_tree .
 
 var removeFadeInRight = function() {
   $('.fadeInRight').removeClass("fadeInRight");
 };
+
+
+// App.ready = (callback) ->
+//   $(document).on('ready page:change', callback)

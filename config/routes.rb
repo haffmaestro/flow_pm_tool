@@ -14,6 +14,12 @@ Rails.application.routes.draw do
     resources :comments
   end
 
+  namespace :api do
+    resources :discussions, only: [] do
+      resources :comments, only: [:index]
+    end
+  end
+
   # map.resources :discussion do |discussion|
   #   accounts.resources :comment, :name_prefix => "discussion_"
   # end
