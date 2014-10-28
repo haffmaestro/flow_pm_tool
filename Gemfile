@@ -30,6 +30,9 @@ gem 'slim-rails'
 gem 'bootstrap-sass','~> 3.2.0'
 gem 'font-awesome-rails'
 
+gem 'angularjs-rails'
+gem 'angular_rails_csrf'
+
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring

@@ -1,7 +1,8 @@
 class DiscussionsController < ApplicationController
-    before_action :find_discussion, only: [:update, :show, :destroy,:create]
+    before_action :find_discussion, only: [:update, :show, :destroy, :create]
     before_action :find_project, only: [:create]
     before_action :find_discussions, only: [:create, :show ]
+    
     def index
       @project = Project.find params[:project_id]
       @discussions = @project.discussions
