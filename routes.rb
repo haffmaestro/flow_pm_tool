@@ -45,3 +45,7 @@ cancel_user_registration GET    /users/cancel(.:format)                         
        api_project_tasks GET    /api/projects/:project_id/tasks(.:format)               api/tasks#index
                          POST   /api/projects/:project_id/tasks(.:format)               api/tasks#create
         api_project_task DELETE /api/projects/:project_id/tasks/:id(.:format)           api/tasks#destroy
+            api_projects GET    /api/projects(.:format)                                 api/projects#index
+        edit_api_project GET    /api/projects/:id/edit(.:format)                        api/projects#edit
+             api_project GET    /api/projects/:id(.:format)                             api/projects#show
+                         DELETE /api/projects/:id(.:format)                             api/projects#destroy

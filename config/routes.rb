@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     resources :projects, only: [] do
       resources :tasks, only: [:index, :create, :destroy]
     end
+    resources :projects, only: [:index, :show, :edit, :destroy]
   end
 
   # map.resources :discussion do |discussion|
