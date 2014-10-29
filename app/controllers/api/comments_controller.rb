@@ -2,30 +2,39 @@ class Api::CommentsController < ActionController::Base
 
   before_action :find_comments, only: [:index]
   def index
-    render json: comments_to_json(@comments)
+    # render json: @discussion
+  end
+
+  def create
+    @comment = Comment.new comment_params
+    @discussion = Discussion.find params[:discussion_id].to_i
+    @comment.discussion = @discussion
+    @comment.user = current_user
+    if @comment.save
+      render json: {saved: true}
+    else
+      render json: {saved: false}
+    end
+
+  end
+
+  def destroy
+    @comment = Comment.find params[:id]
+    if @comment.destroy
+      render json: {destroyed: true}
+    else
+      render json: {destroyed: false}
+    end
   end
 
   private
+
+  def comment_params
+    params.require(:comment).permit(:body)
+  end
+
   def find_comments
+    @discussion = Discussion.find(params[:discussion_id])
     @comments = Discussion.find(params[:discussion_id]).comments
-  end
-
-  def user_helper(comment)
-    if comment.user
-      comment.user.user_name
-    else
-      'Adolph Gitler'
-    end
-  end
-
-  def comments_to_json(comments)
-    comments.collect do |comment|
-      {
-        id: comment.id,
-        body: comment.body,
-        created_at: comment.created_at,
-        user: user_helper(comment)
-      }
-    end
   end
 end

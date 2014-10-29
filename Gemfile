@@ -48,6 +48,7 @@ group :development do
   gem 'quiet_assets'
   gem 'pry-rails'
   gem 'rails-erd'
+  gem 'meta_request'
 end
 
 
