@@ -1,5 +1,5 @@
 (function() {
-  var app = angular.module("flow", []);
+  var app = angular.module('app');
   app.controller('DiscussionController', ['$http',function($http) {
     this.discussion = {};
     var discussionId = $('#discussion').data('discussion-id');
@@ -15,15 +15,15 @@
     });
 
     this.deleteComment=function(comment) {
+      var indexOf = state.discussion.comments.indexOf(comment);
+      state.discussion.comments.splice(indexOf, 1);
       $http.delete("/api/discussions/"+discussionId+"/comments/"+comment.id).success(function(data) {
-        var indexOf = state.discussion.comments.indexOf(comment);
-        state.discussion.comments.splice(indexOf, 1);
       });
 
     };
 
   }]);
-  
+
   app.controller('CommentController',['$http',function($http) {
     this.comment = {};
     this.isTyping = function() {

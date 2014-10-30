@@ -1,11 +1,10 @@
 
-  def change
-    create_table :projects do |t|
-      t.string :title
-      t.text :description
-      t.datetime :due_date
+def change
+  create_table :projects do |t|
+    t.string :title
+    t.text :description
+    t.datetime :due_date
 
-      t.timestamps
-    end
+    t.timestamps
   end
 end

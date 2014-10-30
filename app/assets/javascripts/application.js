@@ -14,12 +14,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require angular
+//= require_self
 //= require_tree .
 
-var removeFadeInRight = function() {
-  $('.fadeInRight').removeClass("fadeInRight");
-};
 
-
-// App.ready = (callback) ->
-//   $(document).on('ready page:change', callback)
+angular.module('app', []);

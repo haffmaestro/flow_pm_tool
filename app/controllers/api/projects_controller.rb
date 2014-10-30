@@ -30,7 +30,8 @@ class Api::ProjectsController < ApplicationController
     render json: @project
   end
 
-  def edit() end
+  def edit
+  end
 
   def update
     if @project.update project_params

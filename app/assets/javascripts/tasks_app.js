@@ -1,5 +1,5 @@
 (function() {
-  var app = angular.module('task_controller', []);
+  var app = angular.module('app');
   app.controller('TaskController', ['$scope', '$http' ,function($scope, $http) {
     var projectId = $("#project").data('project-id');
     var projectData = this;

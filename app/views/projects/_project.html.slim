@@ -9,10 +9,20 @@ h6
   =project_user_display(@project)
 p= @project.description
 p= @project.category.name
-.btn-group
+.btn-group ng-controller="UploadController as uploader"
   = link_to "Edit", edit_project_path(@project), class:"btn btn-default"
   = link_to "Delete", project_path(@project), method: :delete, class:"btn btn-default"
   = link_to "Discussions", project_discussions_path(@project), class:"btn btn-default", onclick: "removeFadeInRight();"
+  button.btn.btn-default ng-click="uploader.toggleShow()" Resources
+div ng-controller="UploadController as uploader" ng-show="uploader.showing"
+  h4 Upload a new resource
+  form name="fileUpload" ng-submit="upload()"
+    .form-group
+      input[type="file" name="resourceFile" multiple class="form-control" file-input="files"]
+    .form-group
+      input type="submit" class="btn btn-default" value="Upload"
+
+
 div ng-controller="TaskController as todo"
   h3 New Task
   form name="taskForm" ng-submit="addTask()"
