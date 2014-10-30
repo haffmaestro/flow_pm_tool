@@ -10,6 +10,10 @@
         |by {{comment.user}} at {{comment.created_at | date}} 
         a ng-click="discussionCtrl.deleteComment(comment)"
           =fa_icon('trash')
+        a ng-click="discussionCtrl.like(comment)" ng-show="if no likes in the comment are by current user"
+          =fa_icon('heart-o')
+        a ng-click="discussionCtrl.unlike(comment)" ng-show="if one likes in the comment are by cur user"
+          =fa_icon('heart')
       p
         |{{comment.body}}
     form[ng-controller="CommentController as commentCtrl" name="commentForm" ng-submit="commentForm.$valid && commentCtrl.addComment(discussionCtrl.discussion)" novalidate]

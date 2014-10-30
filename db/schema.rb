@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141029223318) do
+ActiveRecord::Schema.define(version: 20141030210021) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "attachments", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "resource"
+    t.integer  "project_id"
+  end
+
+  add_index "attachments", ["project_id"], name: "index_attachments_on_project_id", using: :btree
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -40,6 +49,16 @@ ActiveRecord::Schema.define(version: 20141029223318) do
     t.integer  "project_id"
   end
 
+  create_table "likes", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "comment_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "likes", ["comment_id"], name: "index_likes_on_comment_id", using: :btree
+  add_index "likes", ["user_id"], name: "index_likes_on_user_id", using: :btree
+
   create_table "projects", force: true do |t|
     t.string   "title"
     t.text     "description"
@@ -48,7 +67,6 @@ ActiveRecord::Schema.define(version: 20141029223318) do
     t.datetime "updated_at"
     t.integer  "category_id"
     t.integer  "user_id"
-    t.string   "resource"
   end
 
   add_index "projects", ["category_id"], name: "index_projects_on_category_id", using: :btree

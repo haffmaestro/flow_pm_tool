@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  
+
   devise_for :users
   root 'home#index'
 
@@ -15,14 +17,16 @@ Rails.application.routes.draw do
   end
 
   namespace :api do
-    resources :discussions, only: [] do
-      resources :comments, only: [:index, :create, :destroy]
+    resources :discussions, only: [:show] do
+      resources :comments, only: [:index, :create, :destroy] do
+        resources :likes, only: [:create, :destroy]
+      end
     end
     resources :projects, only: [] do
       resources :tasks, only: [:index, :create, :destroy]
     end
     resources :projects, only: [:index, :show, :edit, :destroy] do
-      resource :uploads, only: [:create]
+      resources :attachments, only:[:create]
     end
   end
 

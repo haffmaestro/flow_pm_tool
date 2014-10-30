@@ -31,7 +31,7 @@
       angular.forEach($scope.files, function(file){
         fd.append('file', file);
       });
-      $http.post('/api/projects/'+projectId+'/uploads', fd,
+      $http.post('/api/projects/'+projectId+'/attachments', fd,
       {
         transformRequest:angular.identity,
         headers:{'Content-Type':undefined}

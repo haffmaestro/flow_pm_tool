@@ -7,6 +7,9 @@ class User < ActiveRecord::Base
   has_many :projects, dependent: :nullify
   has_many :comments, dependent: :nullify
 
+  has_many :likes, dependent: :destroy
+  has_many :liked_comments, through: :likes, source: :like
+
   def get_user_name
     if user_name
       "#{user_name}".strip

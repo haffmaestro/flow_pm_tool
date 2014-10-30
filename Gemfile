@@ -30,7 +30,7 @@ gem 'font-awesome-rails'
 
 gem 'angularjs-rails'
 gem 'angular_rails_csrf'
-gem 'active_model_serializers'
+gem 'active_model_serializers', git: 'https://github.com/rails-api/active_model_serializers', branch: '0-9-stable'
 
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
