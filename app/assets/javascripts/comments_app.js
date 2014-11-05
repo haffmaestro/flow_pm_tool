@@ -33,9 +33,7 @@
     this.deleteComment=function(comment) {
       var indexOf = state.discussion.comments.indexOf(comment);
       state.discussion.comments.splice(indexOf, 1);
-      $http.delete("/api/discussions/"+discussionId+"/comments/"+comment.id).success(function(data) {
-      });
-
+      $http.delete("/api/discussions/"+discussionId+"/comments/"+comment.id);
     };
 
     this.like=function(comment) {

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   # Projects Paths
   resources :projects do
     resources :tasks, only: [:create, :destroy]
-    resources :discussions, only: [:index, :create]
+    resources :discussions, only: [:index, :create, :update]
   end
 
   resources :discussions, only: [:edit, :show, :destroy] do

@@ -1,14 +1,13 @@
-  h2 Discussions
-  = render partial: 'form'
-  h2 Current Discussions
-  .well ng-controller="DiscussionController as disc"
-    -@discussions.each do |discussion|
-      = link_to fa_icon('trash'), discussion_path(discussion.id), method: "delete"
-      |  
-      =link_to discussion.title, discussion_path(discussion.id)
-      -if discussion.description
-        h6= discussion.description
-        h6
-          |{{5+5}}
-      hr
+/ #project[data-project-id=@project.id data-current-user-id=current_user.id]
+h2 Discussions
+= render partial: 'form'
+h2 Current Discussions
+.well ng-controller="DiscussionPanelController as discoCtrl"
+  -@discussions.each do |discussion|
+    = link_to fa_icon('trash'), discussion_path(discussion.id), method: "delete"
+    |  
+    =link_to discussion.title, discussion_path(discussion.id)
+    -if discussion.description
+      h6= discussion.description
+    hr
 

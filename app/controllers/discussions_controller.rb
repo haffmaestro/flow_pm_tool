@@ -26,6 +26,7 @@ class DiscussionsController < ApplicationController
 
     def show
       @comment = Comment.new
+      @project = Project.find @discussion.project_id
     end
 
     def edit
