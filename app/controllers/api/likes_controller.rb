@@ -3,21 +3,25 @@ class Api::LikesController < ApplicationController
   before_action :find_comment
 
   def create
-    @like = @comment.likes.new
-    @like.user = current_user
-    if @like.save
-      render json: {saved: true}
+    if @comment.like_for(current_user) == nil
+      @like = @comment.likes.new
+      @like.user = current_user
+      if @like.save
+        render json: @like
+      else
+        render json: {saved: false}
+      end
     else
-      render json: {saved: true}
+      render json: {saved: false, previous_like: true}
     end
   end
 
   def destroy
-    @like = current_user.likes.find params[:id]
+    @like = @comment.likes.find params[:id]
     if @like.destroy
       render json: {destroyed: true}
     else
-      render json: {destroyed: true}
+      render json: {destroyed: false}
     end
   end
 

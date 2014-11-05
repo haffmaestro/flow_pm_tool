@@ -3,7 +3,7 @@
   app.controller('DiscussionController', ['$http',function($http) {
     this.discussion = {};
     var discussionId = $('#discussion').data('discussion-id');
-    this.discussion.currentUser = $('#discussion').data('current-user');
+    this.discussion.currentUserId = $('#discussion').data('current-user-id');
     var state = this;
     this.discussion.comments = [];
 
@@ -12,16 +12,23 @@
       console.log(state.discussion.comments);
       state.discussion.today = data.discussion.today;
       state.discussion.id = data.discussion.id;
-
     });
 
-    this.likes_user=function(like) {
-      return like.id === state.discussion.currentUser.id;
+    likeForUser=function(likes) {
+      var like = _.findWhere(likes, {user_id: state.discussion.currentUserId});
+      return like;
     };
 
-    this.user_has_liked=function(likes) {
-      
-    }
+    this.userHasLiked=function(likes) {
+      if (likeForUser(likes))
+        return true;
+      else
+        return false;
+    };
+
+    this.userHasNotLiked=function(likes) {
+      return !state.userHasLiked(likes);
+    };
 
     this.deleteComment=function(comment) {
       var indexOf = state.discussion.comments.indexOf(comment);
@@ -33,7 +40,8 @@
 
     this.like=function(comment) {
       $http.post("/api/discussions/"+discussionId+"/comments/"+comment.id+"/likes").success(function(data){
-        comment.likes=[{liked: 'liked'}];
+        comment.likes.push({comment_id: comment.id, user_id: state.discussion.currentUserId});
+        console.log(comment.likes);
       })
       .error(function(data){
         console.log(data);

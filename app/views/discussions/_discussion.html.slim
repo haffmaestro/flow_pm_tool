@@ -1,5 +1,5 @@
 
-#discussion[data-discussion-id=@discussion.id data-current-user=current_user.user_name]
+#discussion[data-discussion-id=@discussion.id data-current-user-id=current_user.id]
   h2
     |Comments in
     |  
@@ -10,9 +10,9 @@
         |by {{comment.user}} at {{comment.created_at | date}} 
         a ng-click="discussionCtrl.deleteComment(comment)"
           =fa_icon('trash')
-        a ng-click="discussionCtrl.like(comment)" ng-show="if no likes in the comment are by current user"
+        a ng-click="discussionCtrl.like(comment)" ng-show="discussionCtrl.userHasNotLiked(comment.likes)"
           =fa_icon('heart-o')
-        a ng-click="discussionCtrl.unlike(comment)" ng-show="if one likes in the comment are by cur user"
+        a ng-click="discussionCtrl.unlike(comment)" ng-show="discussionCtrl.userHasLiked(comment.likes)"
           =fa_icon('heart')
       p
         |{{comment.body}}
