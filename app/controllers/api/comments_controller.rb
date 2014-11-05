@@ -1,6 +1,7 @@
 class Api::CommentsController < ActionController::Base
-
   before_action :find_comments, only: [:index]
+  before_action :find_comment, only: [:destroy, :unlike]
+
   def index
     # render json: @discussion
   end
@@ -15,13 +16,19 @@ class Api::CommentsController < ActionController::Base
     else
       render json: {saved: false}
     end
-
   end
 
   def destroy
-    @comment = Comment.find params[:id]
     if @comment.destroy
       render json: {destroyed: true}
+    else
+      render json: {destroyed: false}
+    end
+  end
+
+  def unlike
+    if @comment.like_for(current_user).destroy
+      render json: @comment
     else
       render json: {destroyed: false}
     end
@@ -36,5 +43,9 @@ class Api::CommentsController < ActionController::Base
   def find_comments
     @discussion = Discussion.find(params[:discussion_id])
     @comments = Discussion.find(params[:discussion_id]).comments
+  end
+
+  def find_comment
+    @comment = Comment.find(params[:id])
   end
 end

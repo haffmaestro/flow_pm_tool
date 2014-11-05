@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  
-
   devise_for :users
   root 'home#index'
 
@@ -17,8 +15,18 @@ Rails.application.routes.draw do
   end
 
   namespace :api do
+
+    resources :users, only: [] do
+      collection do
+        get 'current' => 'users#current', as: :current_user
+      end
+    end
+
     resources :discussions, only: [:show] do
       resources :comments, only: [:index, :create, :destroy] do
+        member do
+          delete 'unlike' => 'comments#unlike', as: :unlike_comment
+        end
         resources :likes, only: [:create, :destroy]
       end
     end

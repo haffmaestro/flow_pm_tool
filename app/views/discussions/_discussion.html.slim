@@ -2,18 +2,16 @@
 #discussion[data-discussion-id=@discussion.id data-current-user-id=current_user.id]
   h2
     |Comments in
-    |  
+    |
     =@discussion.title
   .well ng-controller="DiscussionController as discussionCtrl"
     blockquote[ng-repeat="comment in discussionCtrl.discussion.comments"]
       cite
-        |by {{comment.user}} at {{comment.created_at | date}} 
+        |by {{comment.user}} at {{comment.created_at | date}}
         a ng-click="discussionCtrl.deleteComment(comment)"
           =fa_icon('trash')
-        a ng-click="discussionCtrl.like(comment)" ng-show="discussionCtrl.userHasNotLiked(comment.likes)"
-          =fa_icon('heart-o')
-        a ng-click="discussionCtrl.unlike(comment)" ng-show="discussionCtrl.userHasLiked(comment.likes)"
-          =fa_icon('heart')
+        like-button comment="comment"
+          = fa_icon('heart')
       p
         |{{comment.body}}
     form[ng-controller="CommentController as commentCtrl" name="commentForm" ng-submit="commentForm.$valid && commentCtrl.addComment(discussionCtrl.discussion)" novalidate]

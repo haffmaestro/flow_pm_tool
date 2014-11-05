@@ -26,6 +26,7 @@ class Api::LikesController < ApplicationController
   end
 
   private
+
   def find_comment
     @comment = Comment.find params[:comment_id]
   end

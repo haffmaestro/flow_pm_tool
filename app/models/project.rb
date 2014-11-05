@@ -6,8 +6,6 @@ class Project < ActiveRecord::Base
   belongs_to :category
   belongs_to :user
 
-  
-
   def self.search(search_term)
     where("title ILIKE :search_term OR description ILIKE :search_term", {search_term: '%'+search_term+'%'})
   end

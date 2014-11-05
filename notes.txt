@@ -1,0 +1,15 @@
+<div>
+  <comment-item ng-repeat="comment in comments" comment="comment" />
+</div>
+
+<!-- Approximate template for the comment-item directive -->
+<blockquote>
+  <cite>
+    <span class="comment-item--header-info">
+      by {{comment.author}} at {{comment.date}}
+    </span>
+    <delete-comment-button comment="comment" current-user-id="currentUserId">
+    <like-comment-button comment="comment" current-user-id="currentUserId">
+  </cite>
+  <p>{{comment.content}}</p>
+</blockquote>
