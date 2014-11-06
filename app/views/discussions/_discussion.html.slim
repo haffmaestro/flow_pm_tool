@@ -1,19 +1,15 @@
 
+script type="text/preloaded"
+  =DiscussionSerializer.new(@discussion).to_json.html_safe
+script type="text/preloaded" name="user"
+  =UserSerializer.new(current_user).to_json.html_safe
 #discussion[data-discussion-id=@discussion.id data-current-user-id=current_user.id]
   h2
-    |Comments in
+    |Comments in  
     |
     =@discussion.title
   .well ng-controller="DiscussionController as discussionCtrl"
-    blockquote[ng-repeat="comment in discussionCtrl.discussion.comments"]
-      cite
-        |by {{comment.user}} at {{comment.created_at | date}}
-        a ng-click="discussionCtrl.deleteComment(comment)"
-          =fa_icon('trash')
-        like-button comment="comment"
-          = fa_icon('heart')
-      p
-        |{{comment.body}}
+    comment-display ng-repeat="comment in discussionCtrl.discussion.comments" delete-comment-callback="discussionCtrl.deleteComment"comment="comment"
     form[ng-controller="CommentController as commentCtrl" name="commentForm" ng-submit="commentForm.$valid && commentCtrl.addComment(discussionCtrl.discussion)" novalidate]
       .form-group
         textarea[id="comment-area"name="comment[body]" size="60x3" class="form-control" ng-model="commentCtrl.comment.body" required]

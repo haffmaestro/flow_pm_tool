@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+source 'https://rails-assets.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'
@@ -32,6 +32,7 @@ gem 'angularjs-rails'
 gem 'underscore-rails'
 gem 'angular_rails_csrf'
 gem 'active_model_serializers', git: 'https://github.com/rails-api/active_model_serializers', branch: '0-9-stable'
+gem 'rails-assets-angular-preloaded'
 
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
